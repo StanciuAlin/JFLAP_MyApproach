@@ -115,7 +115,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Add a label on transition" x:Name="btn_AddLabelCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Delete an object" x:Name="btn_AddLabelCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/danger.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -129,7 +129,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Delete an object" x:Name="btn_DeleteCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Add a label on transition" x:Name="btn_DeleteCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/tag.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -170,7 +170,9 @@
                 </Button.Background>
             </Button>
             <Border BorderThickness="1" BorderBrush="Red" Width="798" Height="380">
-                <Canvas x:Name="canvasFiniteAutomaton" Height="380" Margin="0,50.5,0,0"/>
+                <Canvas x:Name="canvasFiniteAutomaton" Margin="-1,-1,1,-1" MouseDown="Canvas_MouseDown" MouseMove="MainCanvas_MouseMove">
+                    <Ellipse Width="100" Height="50"/>
+                </Canvas>
             </Border>
 
         </WrapPanel>
