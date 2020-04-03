@@ -1,0 +1,44 @@
+﻿<Window x:Class="JFLAP_MyCopy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JFLAP_MyCopy"
+        mc:Ignorable="d"
+        Title="JFLAP" Height="206" Width="296">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="225*"/>
+            <ColumnDefinition Width="71*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_Help..." />
+                    <MenuItem Header="_About..." />
+                </MenuItem>
+                <MenuItem Header="_Batch">
+                    <MenuItem Header="_BatchTest" />
+                </MenuItem>
+                <MenuItem Header="_Preferences">
+                    <MenuItem Header="_#" />
+                    <MenuItem Header="_#" />
+                    <MenuItem Header="_#" />
+                    <MenuItem Header="_SubItem">
+                        <MenuItem Header="_#" />
+                        <MenuItem Header="_#" />
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Button x:Name="btn_FiniteAutomatonMainForm" Content="Finite Automaton" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Height="39" Width="220" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_FiniteAutomatonMainForm_Click" Grid.ColumnSpan="2" Margin="38,0,0,0"/>
+
+    </Grid>
+</Window>

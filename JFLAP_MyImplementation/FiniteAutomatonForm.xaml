@@ -1,0 +1,181 @@
+﻿<Window x:Class="JFLAP_MyCopy.FiniteAutomatonForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JFLAP_MyCopy"
+        mc:Ignorable="d"
+        Title="FiniteAutomatonForm" Height="450" Width="800" Closed="Window_Closed">
+    <Grid Height="434.04">
+        <Menu x:Name="menuFiniteAutomaton" Height="25" Margin="0,0,0,410">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New... " InputGestureText="Ctrl+N" />
+                <MenuItem Header="_Open..." InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Save" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S"/>
+                <MenuItem Header="Save Image As..." >
+                    <MenuItem Header="Save Graph As JPG" />
+                    <MenuItem Header="Save Graph As PNG" />
+                    <MenuItem Header="Save Graph As GIF" />
+                    <MenuItem Header="Save Graph As BMP" />
+                </MenuItem>
+                <MenuItem Header="_Dismiss Tab" InputGestureText="Ctrl+ESC"/>
+                <MenuItem Header="_Close" InputGestureText="Ctrl+W"/>
+                <MenuItem Header="_Print" InputGestureText="Ctrl+P"/>
+                <MenuItem Header="_Quit" InputGestureText="Ctrl+Q"/>
+            </MenuItem>
+            <MenuItem Header="_Input">
+                <MenuItem Header="_Step with Closure..." InputGestureText="Ctrl+R"/>
+                <MenuItem Header="Step by State..." InputGestureText="Ctrl+Shift+R"/>
+                <MenuItem Header="Fast run..."/>
+                <MenuItem Header="Multiple run..." InputGestureText="Ctrl+M"/>
+            </MenuItem>
+            <MenuItem Header="_Test">
+                <MenuItem Header="_Compare equivalence" />
+                <MenuItem Header="_Highlight Nondeterminism" />
+                <MenuItem Header="_Highlight Lambda-Transitions" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Save Current Graph Layout" />
+                <MenuItem Header="_Restore Saved Graph Layout" />
+                <MenuItem Header="_Move Vertices">
+                    <MenuItem Header="Reflect Across Line...">
+                        <MenuItem Header="Horizontal Line Through Center" />
+                        <MenuItem Header="_Vertical Line Through Center" />
+                        <MenuItem Header="_Diagonal From Upper-Left To Lower-Right" />
+                        <MenuItem Header="_Diagonal From Lower-Left To Upper-Right" />
+                    </MenuItem>
+                    <MenuItem Header="Rotate The Graph"/>
+                    <MenuItem Header="Fill Screen With Graph"/>
+                </MenuItem>
+                <MenuItem Header="Apply A Random Layout Algorithm"/>
+                <MenuItem Header="Apply A Specific Layout Algorithm">
+                    <MenuItem Header="Circle"/>
+                    <MenuItem Header="GEM"/>
+                    <MenuItem Header="Random"/>
+                    <MenuItem Header="Spiral"/>
+                    <MenuItem Header="Tree">
+                        <MenuItem Header="Degree"/>
+                        <MenuItem Header="Hierarchy"/>
+                    </MenuItem>
+                    <MenuItem Header="Two Circle"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Convert">
+                <MenuItem Header="Convert To DFA"/>
+                <MenuItem Header="Minimize DFA"/>
+                <MenuItem Header="Convert To Grammar"/>
+                <MenuItem Header="Convert FA To RE"/>
+                <MenuItem Header="Combine Automata"/>
+                <MenuItem Header="Add Trap State To DFA"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Help..."/>
+                <MenuItem Header="About..."/>
+            </MenuItem>
+        </Menu>
+        <WrapPanel x:Name="wrapPanelFiniteAutomaton" Height="411" Margin="0,22,0,0">
+            <Button ToolTip="Select" x:Name="btn_SelectCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" OpacityMask="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/cursor.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Draw a state" x:Name="btn_DrawStateCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/letter-w.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.2" Y="0.2"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Draw a transition between 2 states" x:Name="btn_DrawTransitionCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/line-chart.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.15000000000000002" Y="0.15000000000000002"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Add a label on transition" x:Name="btn_AddLabelCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/danger.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.7" CenterX="0" CenterY="0"/>
+                                <SkewTransform CenterX="0" CenterY="0"/>
+                                <RotateTransform CenterX="0" CenterY="0"/>
+                                <TranslateTransform X="0.2" Y="0.2"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Delete an object" x:Name="btn_DeleteCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/tag.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.7" ScaleY="0.65"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Undo" x:Name="btn_UndoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/undo.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button ToolTip="Redo" x:Name="btn_RedoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/redo.png" TileMode="None" Stretch="Uniform" Opacity="1">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Border BorderThickness="1" BorderBrush="Red" Width="798" Height="380">
+                <Canvas x:Name="canvasFiniteAutomaton" Height="380" Margin="0,50.5,0,0"/>
+            </Border>
+
+        </WrapPanel>
+
+
+
+    </Grid>
+</Window>
