@@ -1,40 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using JFLAP_MyApproach;
 using System.Windows.Shapes;
 
 namespace JFLAP_MyApproach
 {
     class Circle : IDrawable
     {
-        public Ellipse DrawCircle { get; private set; }
+        public Ellipse CircleObject { get; private set; }
 
-        public List<Ellipse> circles = new List<Ellipse>();
-
-        public Circle(Point location, List<Ellipse> myCircles)
+        public Circle(Point location)
         {
-            DrawCircle = new Ellipse
+            CircleObject = new Ellipse
             {
-                Stroke = Brushes.Black,
+                Width = 46,
+                Height = 46,
+                Stroke = Brushes.Firebrick,
                 StrokeThickness = 2,
-                Fill = Brushes.Green,
-                Margin = new Thickness(location.X, location.Y, 0, 0),
+                Fill = Brushes.LemonChiffon,
+                Margin = new Thickness(location.X - 20, location.Y - 80, 0, 0),
             };
-            myCircles = circles;
+
         }
 
         public void Draw(Point location)
         {
-            if (DrawCircle != null)
-            {
-                //Circle.Width = location.X - Circle.Margin.Left;
-                //Circle.Height = location.Y - Circle.Margin.Top;
-                DrawCircle.Width = 40;
-                DrawCircle.Height = 40;
-                circles.Add(DrawCircle);
-            }
+            
         }
+        
     }
 }

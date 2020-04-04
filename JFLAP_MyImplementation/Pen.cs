@@ -8,19 +8,18 @@ namespace JFLAP_MyApproach
 {
     class Pen
     {
+        private readonly Canvas _holder;
         public Pen(Canvas holder)
         {
             _holder = holder;
         }
-
-        private readonly Canvas _holder;
 
         public void Down(IDrawable obj)
         {
             //if more shapes are added:
             //better use a switch-statement
             if (obj is Circle)
-                _holder.Children.Add((obj as Circle).DrawCircle);
+                _holder.Children.Add((obj as Circle).CircleObject);
             //if (obj is MyLine)
             //    _holder.Children.Add((obj as MyLine).Line);
         }
