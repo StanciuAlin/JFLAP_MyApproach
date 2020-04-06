@@ -38,7 +38,7 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Button x:Name="btn_FiniteAutomatonMainForm" Content="Finite Automaton" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Height="39" Width="220" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_FiniteAutomatonMainForm_Click" Grid.ColumnSpan="2" Margin="38,0,0,0"/>
+        <Button x:Name="btn_FiniteAutomatonMainForm" Content="Finite Automaton" Style="{StaticResource MainWindowButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Height="39" Width="220" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_FiniteAutomatonMainForm_Click" Grid.ColumnSpan="2" Margin="38,0,0,0"/>
 
     </Grid>
 </Window>

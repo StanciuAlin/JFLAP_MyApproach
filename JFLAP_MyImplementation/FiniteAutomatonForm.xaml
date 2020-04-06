@@ -75,7 +75,7 @@
             </MenuItem>
         </Menu>
         <WrapPanel x:Name="wrapPanelFiniteAutomaton" Height="411" Margin="0,22,0,0">
-            <Button ToolTip="Select" x:Name="btn_SelectCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" OpacityMask="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Style="{StaticResource MyButton}">
+            <Button ToolTip="Select" x:Name="btn_SelectCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" OpacityMask="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Style="{StaticResource MyButton}" Click="SelectShapeFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/cursor.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -87,7 +87,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Draw a state" x:Name="btn_DrawStateCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Draw a state" x:Name="btn_DrawStateCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="DrawNewStateFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/letter-w.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -101,7 +101,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Draw a transition between 2 states" x:Name="btn_DrawTransitionCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Draw a transition between 2 states" x:Name="btn_DrawTransitionCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="DrawTransitionLineBetweenStatesFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/line-chart.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -115,7 +115,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Delete an object" x:Name="btn_AddLabelCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Delete an object" x:Name="btn_DeleteCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="DeleteShapeFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/danger.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -129,7 +129,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Add a label on transition" x:Name="btn_DeleteCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Add a label on transition" x:Name="btn_AddLabelCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="AddLabelOnTransitionFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/tag.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -143,7 +143,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Undo" x:Name="btn_UndoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Undo" x:Name="btn_UndoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="UndoOperationFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/undo.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
@@ -156,7 +156,7 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button ToolTip="Redo" x:Name="btn_RedoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}">
+            <Button ToolTip="Redo" x:Name="btn_RedoCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" Style="{StaticResource MyButton}" Click="RedoOperationFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/redo.png" TileMode="None" Stretch="Uniform" Opacity="1">
                         <ImageBrush.RelativeTransform>
