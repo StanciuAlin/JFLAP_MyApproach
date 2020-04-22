@@ -8,5 +8,6 @@ namespace JFLAP_MyApproach
     interface IDrawable
     {
         void Draw(Point location);
+        void Draw(Point locationX, Point locationY);
     }
 }

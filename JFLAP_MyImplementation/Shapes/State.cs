@@ -9,13 +9,17 @@ using System.Windows.Shapes;
 
 namespace JFLAP_MyApproach
 {
-    class Circle : IDrawable
+    class State : IDrawable
     {
-        public Ellipse CircleObject { get; private set; }
-
-        public Circle(Point location)
+        readonly Pen pen = null;
+        public Ellipse StateObject { get; private set; }
+        private int _stateIndex = 0;
+        public State(Point location)
         {
-            CircleObject = new Ellipse
+            TextLabel label = new TextLabel(location, _stateIndex++);
+            pen.Down(label);
+
+            StateObject = new Ellipse
             {
                 Width = 46,
                 Height = 46,
@@ -31,6 +35,10 @@ namespace JFLAP_MyApproach
         {
             
         }
-        
+
+        public void Draw(Point locationX, Point locationY)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

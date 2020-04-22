@@ -1,4 +1,5 @@
 ﻿using JFLAP_MyApproach;
+using JFLAP_MyApproach.Shapes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,9 @@ namespace JFLAP_MyCopy
 
         private Point _startCoordinationLine = new Point(0, 0);
         private Point _endCoordinationLine = new Point(0, 0);
+
+        
+        private bool _isMouseButtonPressed = false;
 
         #region Button variables pressed/not pressed
         // varibles for New state button which check if it is pressed or not
@@ -49,10 +53,6 @@ namespace JFLAP_MyCopy
         private int _counterBtnRedo = 0;
         #endregion
 
-        string stateIndex;
-        int currentStateIndex;
-        string stateIndexChar = "q";
-
         public FiniteAutomatonForm()
         {
             InitializeComponent();
@@ -68,47 +68,50 @@ namespace JFLAP_MyCopy
         private void canvasFiniteAutomatonDrawShape_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Get the X & Y of where mouse is 1st clicked
-            _startCoordinationLine = e.GetPosition(this);
+
+            
+            
         }
 
         private void canvasFiniteAutomatonDrawShape_MouseMove(object sender, MouseEventArgs e)
         {
-            // Update the X & Y as the mouse moves
-            //if (e.LeftButton == MouseButtonState.Pressed && _isPressedNewStateBtn)
-            //{
-            //    _startCoordinationState = e.GetPosition(this);
-            //}
-
-            //if (e.LeftButton == MouseButtonState.Pressed && _isPressedTransitionBtn)
-            //{
-
-            //}
-
+            _endCoordinationLine = e.GetPosition(this);
+            if (_isPressedTransitionBtn)
+            {
+                if (_isMouseButtonPressed)
+                {
+                    DrawLine();
+                }
+            }
         }
 
         private void canvasFiniteAutomatonDrawShape_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            // Draw the correct shape
-            _endCoordinationLine = e.GetPosition(this);
-            if (_isPressedTransitionBtn)
-            {
-                DrawLine();
-            }
         }
 
         private void canvasFiniteAutomatonDrawNewState_LeftButtonDown(object sender, MouseEventArgs e)
         {
-            if (_isPressedNewStateBtn)
+            if (!_isPressedDeleteBtn)
             {
-                _startCoordinationState = e.GetPosition(this);
+                if (_isPressedTransitionBtn)
+                {
+                    _startCoordinationLine = e.GetPosition(this);
+                    _isMouseButtonPressed = true;
+                }
+                else if (_isPressedNewStateBtn)
+                {
+                    _startCoordinationState = e.GetPosition(this);
+                }
             }
-
-            //if (_isPressedTransitionBtn)
-            //{
-            //    _startCoordinationLine = e.GetPosition(this);
-            //}
-
-            //DrawCircle(e.GetPosition(this));
+            else
+            {
+                Point point = e.GetPosition((UIElement)sender);
+                HitTestResult result = VisualTreeHelper.HitTest(canvasFiniteAutomaton, point);
+                if (result != null)
+                {
+                    canvasFiniteAutomaton.Children.Remove(result.VisualHit as UIElement);
+                }
+            }
         }
         private void canvasFiniteAutomaton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -117,6 +120,11 @@ namespace JFLAP_MyCopy
                 DrawCircle(_startCoordinationState);
             }
 
+            if (_isPressedTransitionBtn)
+            {
+                // Draw the correct shape
+                _isMouseButtonPressed = false;
+            }
 
         }
         #endregion
@@ -126,32 +134,14 @@ namespace JFLAP_MyCopy
         private void DrawLine()
         {
             // Add a Line Element
-            Line line = new Line();
-            line.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-            line.X1 = _startCoordinationLine.X;
-            line.X2 = _endCoordinationLine.X;
-
-            line.Y1 = _startCoordinationLine.Y - 52;
-            line.Y2 = _endCoordinationLine.Y - 52;
-            line.HorizontalAlignment = HorizontalAlignment.Left;
-            line.VerticalAlignment = VerticalAlignment.Center;
-            line.StrokeThickness = 2;
-            canvasFiniteAutomaton.Children.Add(line);
+            TransitionLine line = new TransitionLine(_startCoordinationLine, _endCoordinationLine);
+            canvasFiniteAutomaton.Children.Add(line.LineObject);
         }
         private void DrawCircle(Point m)
         {
-            Circle circle = new Circle(_startCoordinationState);
-            Label label = new Label
-            {
-                Width = 30,
-                Height = 30,
-                Background = Brushes.LemonChiffon,
-                Margin = new Thickness(_startCoordinationState.X - 12, _startCoordinationState.Y - 72, 0, 0),
-                Content = Convert.ToString(stateIndexChar + currentStateIndex++),
-            };
-
-            canvasFiniteAutomaton.Children.Add(circle.CircleObject);
-            canvasFiniteAutomaton.Children.Add(label);
+            State circle = new State(_startCoordinationState);
+            canvasFiniteAutomaton.Children.Add(circle.StateObject);
+            
         }
         #endregion
 

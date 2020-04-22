@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace JFLAP_MyApproach
@@ -18,10 +15,10 @@ namespace JFLAP_MyApproach
         {
             //if more shapes are added:
             //better use a switch-statement
-            if (obj is Circle)
-                _holder.Children.Add((obj as Circle).CircleObject);
-            //if (obj is MyLine)
-            //    _holder.Children.Add((obj as MyLine).Line);
+            if (obj is State)
+                _holder.Children.Add((obj as State).StateObject);
+            if (obj is TextLabel)
+                _holder.Children.Add((obj as TextLabel).TextLabelObject);
         }
 
         public void Draw(IDrawable obj, Point location)
