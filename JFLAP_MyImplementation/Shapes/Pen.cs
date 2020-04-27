@@ -23,7 +23,7 @@ namespace JFLAP_MyApproach
 
         public void Draw(IDrawable obj, Point location)
         {
-            obj.Draw(location);
+            //obj.Draw(location);
         }
     }
 }

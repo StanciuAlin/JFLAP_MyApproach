@@ -6,19 +6,27 @@ using System.Windows;
 using System.Windows.Media;
 using JFLAP_MyApproach;
 using System.Windows.Shapes;
+using System.Windows.Controls;
 
 namespace JFLAP_MyApproach
 {
     class State : IDrawable
     {
-        readonly Pen pen = null;
+        public double X { get; private set; }
+        public double Y { get; private set; }
+        public int StateId { get; set; }
         public Ellipse StateObject { get; private set; }
-        private int _stateIndex = 0;
-        public State(Point location)
-        {
-            TextLabel label = new TextLabel(location, _stateIndex++);
-            pen.Down(label);
 
+        private TextLabel textLabel;
+        public State(Point location, int _stateIndex)
+        {
+            // Save state location
+            X = location.X;
+            Y = location.Y;
+            StateId = _stateIndex;
+            // Create a new label for current state
+            textLabel = new TextLabel(location, _stateIndex++);
+            // Create a new ellipse
             StateObject = new Ellipse
             {
                 Width = 46,
@@ -31,14 +39,13 @@ namespace JFLAP_MyApproach
 
         }
 
-        public void Draw(Point location)
+        public void Draw(Point location, Canvas canvas)
         {
-            
-        }
+            StateObject.Width = 46;
+            StateObject.Height = 46;
 
-        public void Draw(Point locationX, Point locationY)
-        {
-            throw new NotImplementedException();
+            canvas.Children.Add(StateObject);
+            canvas.Children.Add(textLabel.TextLabelObject);
         }
     }
 }

@@ -15,13 +15,18 @@ namespace JFLAP_MyCopy
     /// </summary>
     public partial class FiniteAutomatonForm : Window
     {
+        const int radius = 23;
+
         private Point _startCoordinationState = new Point(0, 0);
 
         private Point _startCoordinationLine = new Point(0, 0);
         private Point _endCoordinationLine = new Point(0, 0);
 
-        
+        private int _stateIndex = 0;
+        private TransitionLine line = null;
         private bool _isMouseButtonPressed = false;
+
+        DFA dFA = new DFA();
 
         #region Button variables pressed/not pressed
         // varibles for New state button which check if it is pressed or not
@@ -68,34 +73,24 @@ namespace JFLAP_MyCopy
         private void canvasFiniteAutomatonDrawShape_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Get the X & Y of where mouse is 1st clicked
-
-            
-            
-        }
-
-        private void canvasFiniteAutomatonDrawShape_MouseMove(object sender, MouseEventArgs e)
-        {
-            _endCoordinationLine = e.GetPosition(this);
-            if (_isPressedTransitionBtn)
-            {
-                if (_isMouseButtonPressed)
-                {
-                    DrawLine();
-                }
-            }
-        }
-
-        private void canvasFiniteAutomatonDrawShape_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void canvasFiniteAutomatonDrawNewState_LeftButtonDown(object sender, MouseEventArgs e)
-        {
+           
             if (!_isPressedDeleteBtn)
             {
                 if (_isPressedTransitionBtn)
                 {
                     _startCoordinationLine = e.GetPosition(this);
+                    foreach (State state in dFA._states)
+                    {
+                        if (Math.Pow(state.X - _endCoordinationLine.X, 2) + Math.Pow(state.Y - _endCoordinationLine.Y, 2) < Math.Pow(radius, 2))
+                        {
+                            _startCoordinationLine.X = state.X;
+                            _startCoordinationLine.Y = state.Y;
+                        }
+                    }
+                    line = new TransitionLine(_startCoordinationLine);
+
+                    canvasFiniteAutomaton.Children.Add(line.LineObject);
+                    
                     _isMouseButtonPressed = true;
                 }
                 else if (_isPressedNewStateBtn)
@@ -112,39 +107,99 @@ namespace JFLAP_MyCopy
                     canvasFiniteAutomaton.Children.Remove(result.VisualHit as UIElement);
                 }
             }
+
         }
-        private void canvasFiniteAutomaton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+
+        private void canvasFiniteAutomatonDrawShape_MouseMove(object sender, MouseEventArgs e)
+        {
+            _endCoordinationLine = e.GetPosition(this);
+            if (_isPressedTransitionBtn)
+            {
+                if (_isMouseButtonPressed)
+                {
+                    line.Draw(_endCoordinationLine, canvasFiniteAutomaton);
+                }
+            }
+        }
+
+        private void canvasFiniteAutomatonDrawShape_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (_isPressedNewStateBtn)
             {
-                DrawCircle(_startCoordinationState);
+                State state = new State(_startCoordinationState, _stateIndex++);
+                dFA.AddState(state);
+                state.Draw(_startCoordinationState, canvasFiniteAutomaton);
             }
 
             if (_isPressedTransitionBtn)
             {
+                foreach (State state in dFA._states)
+                {
+                    if (Math.Pow(state.X - _endCoordinationLine.X, 2) + Math.Pow(state.Y - _endCoordinationLine.Y, 2) < Math.Pow(radius, 2))
+                    {
+                        _endCoordinationLine.X = state.X;
+                        _endCoordinationLine.Y = state.Y;
+
+                        double deltaY = _endCoordinationLine.Y - _startCoordinationLine.Y;
+                        double deltaX = _endCoordinationLine.X - _startCoordinationLine.X;
+
+                        double len = Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+                        double r = radius / len;
+
+                        double y1 = _startCoordinationLine.Y + deltaY * r;
+                        double y2 = _endCoordinationLine.Y - deltaY * r;
+
+                        double x1 = _startCoordinationLine.X + deltaX * r;
+                        double x2 = _endCoordinationLine.X - deltaX * r;
+
+                        _startCoordinationLine.X = x1;
+                        _startCoordinationLine.Y = y1 - 55;
+
+                        _endCoordinationLine.X = x2;
+                        _endCoordinationLine.Y = y2 - 55;
+                        ////noi am facut tangenta aici
+                        //_endCoordinationLine.Y -= 31;
+                        //_endCoordinationLine.X -= 31;
+                        //double sideX = _endCoordinationLine.X - state.X;
+                        //double sideY = _endCoordinationLine.Y - state.Y;
+                        //double len = Math.Sqrt(Math.Pow(sideX, 2) + Math.Pow(sideY, 2));
+
+                        //double r = radius / len;
+                        ////double alpha = Math.Atan2(sideX, sideY) * (Math.PI / 180F);
+                        ////_endCoordinationLine.X = state.X + radius * Math.Sin(alpha * Math.PI / 180F);
+                        ////_endCoordinationLine.Y = state.Y + radius * Math.Cos(alpha * Math.PI / 180F);
+
+                        //_endCoordinationLine.X = state.X + sideX * r;
+                        //_endCoordinationLine.Y = state.Y + sideY * r;
+                        ////_endCoordinationLine.Y = state.Y + (radius / len) * sideY;
+
+                        ////result.Y = (int)Math.Round(centerPoint.Y + distance * Math.Sin(angle));
+                        ////result.X = (int)Math.Round(centerPoint.X + distance * Math.Cos(angle));
+
+
+                        //line.Draw(_endCoordinationLine, canvasFiniteAutomaton);
+                        Point _endCoordinationLineArrowUp = new Point();
+                        Point _endCoordinationLineArrowBottom = new Point();
+                        Point _startCoordinationLineArrow = _endCoordinationLine;
+
+                        _endCoordinationLineArrowUp.X = _endCoordinationLine.X - 10 * Math.Cos(30);
+                        _endCoordinationLineArrowUp.Y = _endCoordinationLine.Y - 10 * Math.Sin(30);
+
+                        _endCoordinationLineArrowBottom.X = _endCoordinationLine.X + 10 * Math.Cos(30);
+                        _endCoordinationLineArrowBottom.Y = _endCoordinationLine.X + 10 * Math.Sin(30);
+
+
+                        line.Draw2(_startCoordinationLine, _endCoordinationLine);
+                        
+                    }
+                }
                 // Draw the correct shape
                 _isMouseButtonPressed = false;
             }
 
+
         }
         #endregion
-
-        #region Draw shape
-
-        private void DrawLine()
-        {
-            // Add a Line Element
-            TransitionLine line = new TransitionLine(_startCoordinationLine, _endCoordinationLine);
-            canvasFiniteAutomaton.Children.Add(line.LineObject);
-        }
-        private void DrawCircle(Point m)
-        {
-            State circle = new State(_startCoordinationState);
-            canvasFiniteAutomaton.Children.Add(circle.StateObject);
-            
-        }
-        #endregion
-
 
         #region Press button (pressed/not pressed)
         private void DrawNewStateFiniteAutomaton_Click(object sender, EventArgs e)

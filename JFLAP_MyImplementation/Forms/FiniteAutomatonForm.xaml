@@ -170,11 +170,10 @@
                 </Button.Background>
             </Button>
             <Border BorderThickness="1" BorderBrush="Red" Width="798" Height="380">
-                <Canvas x:Name="canvasFiniteAutomaton" Margin="-1,-1,1,-1" MouseDown="canvasFiniteAutomatonDrawShape_MouseDown" MouseMove="canvasFiniteAutomatonDrawShape_MouseMove" MouseLeftButtonDown="canvasFiniteAutomatonDrawNewState_LeftButtonDown" MouseUp="canvasFiniteAutomatonDrawShape_MouseUp" MouseLeftButtonUp="canvasFiniteAutomaton_MouseLeftButtonUp">
+                <Canvas x:Name="canvasFiniteAutomaton" Margin="-1,-1,1,-1" MouseDown="canvasFiniteAutomatonDrawShape_MouseDown" MouseMove="canvasFiniteAutomatonDrawShape_MouseMove" MouseUp="canvasFiniteAutomatonDrawShape_MouseUp">
                     <Canvas.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </Canvas.Background>
-                    <Button Content="Button" Canvas.Left="536" Canvas.Top="110"/>
                 </Canvas>
             </Border>
 
