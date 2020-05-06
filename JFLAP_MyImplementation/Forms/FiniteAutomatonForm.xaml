@@ -7,7 +7,14 @@
         mc:Ignorable="d"
         Title="FiniteAutomatonForm" Height="450" Width="800" Closed="Window_Closed">
     <Grid Height="434.04">
-        <Menu x:Name="menuFiniteAutomaton" Height="25" Margin="0,0,0,410">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="menuFiniteAutomaton" Height="25" Margin="0,0,0,409" Grid.ColumnSpan="2">
+            <Menu.Effect>
+                <DropShadowEffect/>
+            </Menu.Effect>
             <MenuItem Header="_File">
                 <MenuItem Header="_New... " InputGestureText="Ctrl+N" />
                 <MenuItem Header="_Open..." InputGestureText="Ctrl+O"/>
@@ -74,7 +81,7 @@
                 <MenuItem Header="About..."/>
             </MenuItem>
         </Menu>
-        <WrapPanel x:Name="wrapPanelFiniteAutomaton" Height="411" Margin="0,22,0,0">
+        <WrapPanel x:Name="wrapPanelFiniteAutomaton" Height="411" Margin="0,23,0,0" Grid.ColumnSpan="2">
             <Button ToolTip="Select" x:Name="btn_SelectCanvasFiniteAutomaton" Content="" Width="30" Height="30" Visibility="Visible" BorderBrush="#FFF06060" OpacityMask="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Style="{StaticResource MyButton}" Click="SelectShapeFiniteAutomaton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/cursor.png" TileMode="None" Stretch="Uniform" Opacity="1">

@@ -38,7 +38,8 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Button x:Name="btn_FiniteAutomatonMainForm" Content="Finite Automaton" Style="{StaticResource MainWindowButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Height="39" Width="220" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_FiniteAutomatonMainForm_Click" Grid.ColumnSpan="2" Margin="38,0,0,0"/>
+        <Button x:Name="btn_FiniteAutomatonMainForm" Content="Finite Automaton" Style="{StaticResource MainWindowButtons}" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Height="39" Width="231" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_RegExForm_Click" Grid.ColumnSpan="2" Margin="29,51,0,0"/>
+        <Button x:Name="btn_RegExForm" Content="Regular Expression" Style="{StaticResource MainWindowButtons}" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Height="39" Width="232" BorderBrush="#FFEA2E2E" FontSize="25" Foreground="#FFDD1212" FontWeight="Bold" Click="btn_RegExForm_Click" Grid.ColumnSpan="2" Margin="28,113,0,0"/>
 
     </Grid>
 </Window>

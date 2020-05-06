@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JFLAP_MyApproach.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,13 @@ namespace JFLAP_MyCopy
             FiniteAutomatonForm finiteAutomatonForm = new FiniteAutomatonForm();
             this.Visibility = Visibility.Hidden;
             finiteAutomatonForm.Show();
+        }
+
+        private void btn_RegExForm_Click(object sender, RoutedEventArgs e)
+        {
+            RegExForm regExForm = new RegExForm();
+            this.Visibility = Visibility.Hidden;
+            regExForm.Show();
         }
     }
 }
