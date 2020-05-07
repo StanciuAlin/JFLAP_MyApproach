@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JFLAP_MyCopy;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,15 +23,17 @@ namespace JFLAP_MyApproach.Forms
             tbxText.ToolTip = "Please insert the text to check the match with regex";
             tbxMatches.ToolTip = "Match informations";
 
-            cbxCaseSensitive.Content = "Case sensitive OFF";
             cbxCaseSensitive.ToolTip = "Match the text case sensitive";
+
+            tbxText.IsEnabled = false;
         }
 
         #region Events
         private void Window_Closed_RegEx(object sender, EventArgs e)
         {
-            Environment.Exit(0);
-
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
         }
 
 
@@ -38,13 +41,15 @@ namespace JFLAP_MyApproach.Forms
         {
             isActiveCbxCaseSensitive = true;
             cbxCaseSensitive.Content = "Case sensitive ON";
+            tbxText.Clear();
         }
 
 
         private void cbxCaseSensitive_Unchecked(object sender, RoutedEventArgs e)
         {
             isActiveCbxCaseSensitive = false;
-            cbxCaseSensitive.Content = "Case sensitive OFF";
+            cbxCaseSensitive.Content = "Case sensitive";
+            tbxText.Clear();
         }
         #endregion
 
@@ -54,12 +59,12 @@ namespace JFLAP_MyApproach.Forms
             if (!isActiveCbxCaseSensitive)
             {
                 rx = new Regex(tbxRegEx.Text,
-              RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                RegexOptions.Compiled | RegexOptions.IgnoreCase);
             }
             else
             {
                 rx = new Regex(tbxRegEx.Text,
-              RegexOptions.Compiled);
+                RegexOptions.Compiled);
             }
 
             // Define a test string.
@@ -67,7 +72,7 @@ namespace JFLAP_MyApproach.Forms
             // Find matches.
             MatchCollection matches = rx.Matches(text);
 
-            if(matches.Count > 0)
+            if (matches.Count > 0 && tbxRegEx.Text != "")
             {
                 tbxMatches.Foreground = new SolidColorBrush(Colors.Green);
                 // Report the number of matches found.
@@ -89,7 +94,7 @@ namespace JFLAP_MyApproach.Forms
                     //                  groups["word"].Value,
                     //                  groups[0].Index,
                     //                  groups[1].Index);
-                    infoText = infoText + groups["word"].Value + " Reported starting at position " + 
+                    infoText = infoText + groups["word"].Value + " Reported starting at position " +
                         groups[0].Index + "\n";
                 }
                 tbxMatches.Text = infoText;
@@ -102,5 +107,12 @@ namespace JFLAP_MyApproach.Forms
             }
         }
 
+        private void tbxRegEx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbxText.IsEnabled = true;
+            tbxMatches.Foreground = new SolidColorBrush(Colors.Red);
+            // Report the number of matches found.
+            tbxMatches.Text = Convert.ToString("No match");
+        }
     }
 }

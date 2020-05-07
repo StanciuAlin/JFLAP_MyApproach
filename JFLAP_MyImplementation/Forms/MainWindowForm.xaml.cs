@@ -39,5 +39,10 @@ namespace JFLAP_MyCopy
             this.Visibility = Visibility.Hidden;
             regExForm.Show();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

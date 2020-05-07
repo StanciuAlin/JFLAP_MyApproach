@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JFLAP_MyCopy"
         mc:Ignorable="d"
-        Title="JFLAP" Height="206" Width="296">
+        Title="JFLAP" Height="206" Width="296" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="225*"/>

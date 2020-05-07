@@ -78,21 +78,11 @@
         <Label x:Name="lblRegExText" Content="Regular Expression" HorizontalAlignment="Left" Margin="49,80,0,0" VerticalAlignment="Top" Foreground="#FFF30E0E" FontWeight="Bold" FontSize="16"/>
         <Label x:Name="lblTextToCheck" Content="Text" HorizontalAlignment="Left" Margin="50,137,0,0" VerticalAlignment="Top" Foreground="#FFF30E0E" FontWeight="Bold" FontSize="16"/>
         <Label x:Name="lblMatch" Content="Match information" HorizontalAlignment="Left" Margin="50,198,0,0" VerticalAlignment="Top" Foreground="#FFF30E0E" FontWeight="Bold" FontSize="16"/>
-        <TextBox x:Name="tbxRegEx" HorizontalAlignment="Left" Margin="232,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Uid="fs" IsReadOnlyCaretVisible="True" Height="22">
-            <TextBox.Effect>
-                <DropShadowEffect Color="Red" BlurRadius="12" Opacity="1" RenderingBias="Performance" ShadowDepth="5" Direction="310"/>
-            </TextBox.Effect>
-        </TextBox>
-        <TextBox x:Name="tbxText" HorizontalAlignment="Left" Margin="232,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Height="23" TextChanged="tbxText_TextChanged">
-            <TextBox.Effect>
-                <DropShadowEffect Color="#FFFF0303" Direction="310" ShadowDepth="5" BlurRadius="12"/>
-            </TextBox.Effect>
-        </TextBox>
-        <TextBox x:Name="tbxMatches" HorizontalAlignment="Left" Margin="232,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Visibility="Visible" Height="80">
-            <TextBox.Effect>
-                <DropShadowEffect BlurRadius="12" Color="Red" Direction="310"/>
-            </TextBox.Effect>
-        </TextBox>
+        <TextBox x:Name="tbxRegEx" HorizontalAlignment="Left" Margin="232,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Uid="fs" IsReadOnlyCaretVisible="True" Height="22" Background="White" Foreground="Black" TextChanged="tbxRegEx_TextChanged"/>
+        <TextBox x:Name="tbxText" HorizontalAlignment="Left" Margin="232,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Height="23" TextChanged="tbxText_TextChanged" Foreground="Black"/>
+        <TextBox x:Name="tbxMatches" HorizontalAlignment="Left" Margin="232,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Visibility="Visible" Height="80" Foreground="#FFEE9B9B" IsReadOnly="True"/>
+
+
         <Label x:Name="lblCaseSensitive" Content="Match case sensitive" HorizontalAlignment="Left" Margin="264,316,0,0" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold"/>
         <CheckBox x:Name="cbxCaseSensitive" Content="Case sensitive" HorizontalAlignment="Left" Margin="406,322,0,0" VerticalAlignment="Top" Foreground="#FFFF0101" RenderTransformOrigin="-0.227,0.199" Checked="cbxCaseSensitive_Checked" Unchecked="cbxCaseSensitive_Unchecked"/>
 

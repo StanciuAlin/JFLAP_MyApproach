@@ -65,7 +65,9 @@ namespace JFLAP_MyCopy
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
         }
 
 
